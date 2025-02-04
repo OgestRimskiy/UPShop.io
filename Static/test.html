@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домик и Монетки</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #house {
+            width: 100px;
+            height: 100px;
+            background-color: #ffcc00;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.1s ease; /* Переход для анимации */
+        }
+        #house.squash {
+            transform: scaleY(0.8); /* Сплющивание по оси Y */
+            transform: translate(0,4px);
+        }
+        #coins {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="house"></div>
+    <div id="coins">Монетки: 0</div>
+
+    <script>
+        let coinCount = 0;
+        const house = document.getElementById('house');
+        const coinsDisplay = document.getElementById('coins');
+
+        house.addEventListener('click', function() {
+            // Увеличиваем счетчик монет
+            coinCount++;
+            coinsDisplay.innerText = 'Монетки: ' + coinCount;
+
+            // Добавляем класс для анимации
+            house.classList.add('squash');
+
+            // Убираем класс через небольшой промежуток времени для повторного использования анимации
+            setTimeout(() => {
+                house.classList.remove('squash');
+            }, 100); // Время должно совпадать с длительностью перехода в CSS
+        });
+    </script>
+</body>
+</html>
